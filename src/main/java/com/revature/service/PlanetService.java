@@ -13,28 +13,49 @@ public class PlanetService {
 		this.dao = dao;
 	}
 
-	public List<Planet> getAllPlanets() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Planet> getAllPlanets(int userId) {
+		List<Planet> myPlanets = dao.getAllPlanets(userId);
+		return myPlanets;
 	}
 
 	public Planet getPlanetByName(int ownerId, String planetName) {
-		// TODO Auto-generated method stub
-		return null;
+		Planet possiblePlanet = dao.getPlanetByName(planetName);
+		if(possiblePlanet.getId() != 0 )
+		{
+			if(possiblePlanet.getOwnerId() == ownerId)
+			{
+				return possiblePlanet;
+			}
+		}
+		return new Planet();
 	}
 
 	public Planet getPlanetById(int ownerId, int planetId) {
-		// TODO Auto-generated method stub
-		return null;
+		Planet possiblePlanet = dao.getPlanetById(planetId);
+		if(possiblePlanet.getId() != 0)
+		{
+			if(possiblePlanet.getOwnerId() == ownerId)
+			{
+				return possiblePlanet;
+			}
+		}
+		return new Planet();
 	}
 
 	public Planet createPlanet(int ownerId, Planet planet) {
-		// TODO Auto-generated method stub
-		return null;
+		if(planet.getName().length() <= 30) {
+			Planet checkPlanet = dao.getPlanetByName(planet.getName());
+			if(checkPlanet.getId() == 0) {
+				Planet createdPlanet = dao.createPlanet(ownerId, planet);
+				if (createdPlanet.getId() != 0) {
+					return createdPlanet;
+				}
+			}
+		}
+		return new Planet();
 	}
 
 	public boolean deletePlanetById(int planetId) {
-		// TODO Auto-generated method stub
-		return false;
+		return dao.deletePlanetById(planetId);
 	}
 }

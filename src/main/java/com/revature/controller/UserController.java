@@ -2,7 +2,7 @@ package com.revature.controller;
 
 import com.revature.MainDriver;
 import com.revature.models.User;
-import com.revature.models.UsernamePasswordAuthentication;
+import com.revature.models.Authent;
 import com.revature.service.UserService;
 
 
@@ -14,7 +14,7 @@ public class UserController {
 		this.userService = userService;
 	}
 
-	public void authenticate(UsernamePasswordAuthentication loginRequestData) {
+	public void authenticate(Authent loginRequestData) {
 		// since we are checking the credentials against the database we can simply pass them to the service layer
 		User possibleUser = userService.authenticate(loginRequestData);
 		if (possibleUser.getId() != 0){
@@ -36,7 +36,7 @@ public class UserController {
 			The register method is set to return a User object no matter what, so I chose to return an
 			empty User (no fields set) if the registration action failed. This lets me check if the Id is
 			initialized, and if not, I know the register action failed and the user should be informed.
-			Alternatively, if the registration was a success the the Id should be initialized an I can give
+			Alternatively, if the registration was a success, the ID should be initialized, and I can give
 			a success message to the user
 		 */
 		User userResponse = userService.register(registerRequestData);
@@ -48,11 +48,16 @@ public class UserController {
 	}
 
 	public void logout() {
-		// TODO: implement
+		MainDriver.loggedInUserId = 0;
 	}
-	
+
+	// Allows us to check if a userId is the same as the ID of whoever is currently logged in.
 	public boolean checkAuthorization(int userId) {	
 		// TODO: implement
+		if(userId == MainDriver.loggedInUserId)
+		{
+			return true;
+		}
 		return false;
 	}
 }

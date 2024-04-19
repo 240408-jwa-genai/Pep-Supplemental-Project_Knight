@@ -5,7 +5,7 @@ public class Moon {
 	private int id;
 	private String name; 
 	private int myPlanetId;
-	
+
 	public int getId() {
 		return id;
 	}

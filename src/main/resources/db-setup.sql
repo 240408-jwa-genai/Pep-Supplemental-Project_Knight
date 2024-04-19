@@ -11,12 +11,12 @@ create table users(
 
 create table planets(
 	id integer primary key,
-	name text,
+	name text unique,
 	ownerId integer references users(id)
 );
 
 create table moons(
 	id integer primary key,
-	name text,
+	name text unique,
 	myPlanetId integer references planets(id)
 );

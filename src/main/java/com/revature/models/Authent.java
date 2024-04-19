@@ -1,6 +1,6 @@
 package com.revature.models;
 
-public class UsernamePasswordAuthentication {
+public class Authent {
 
     private String username;
     private String password;
@@ -26,7 +26,7 @@ public class UsernamePasswordAuthentication {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        UsernamePasswordAuthentication other = (UsernamePasswordAuthentication) obj;
+        Authent other = (Authent) obj;
         if (username == null) {
             if (other.username != null)
                 return false;

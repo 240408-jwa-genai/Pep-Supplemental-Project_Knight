@@ -1,7 +1,7 @@
 package com.revature.service;
 
 import com.revature.models.User;
-import com.revature.models.UsernamePasswordAuthentication;
+import com.revature.models.Authent;
 import com.revature.repository.UserDao;
 
 public class UserService {
@@ -12,7 +12,7 @@ public class UserService {
 		this.dao = dao;
 	}
 
-	public User authenticate(UsernamePasswordAuthentication loginRequestData) {
+	public User authenticate(Authent loginRequestData) {
 		// since this is where the credentials are actually authenticated we can use the username and newly finished
 		// dao method to find users by username, and check to see if we get a user back
 		User possibleUser = dao.getUserByUsername(loginRequestData.getUsername());
@@ -68,7 +68,7 @@ public class UserService {
 					// if the data is not the same, then the credentials are valid and I can go through
 					// with account registration. Note the registration method requires a new object:
 					// a UsernamePasswordAuthentication object specifically
-					UsernamePasswordAuthentication validUserCreds = new UsernamePasswordAuthentication();
+					Authent validUserCreds = new Authent();
 					validUserCreds.setUsername(usernameFromRegisterRequest);
 					validUserCreds.setPassword(registerRequestData.getPassword());
 

@@ -1,7 +1,7 @@
 package com.revature.repository;
 
 import com.revature.models.User;
-import com.revature.models.UsernamePasswordAuthentication;
+import com.revature.models.Authent;
 import com.revature.utilities.ConnectionUtil;
 
 import java.sql.*;
@@ -43,7 +43,7 @@ public class UserDao {
         }
     }
 
-    public User createUser(UsernamePasswordAuthentication registerRequest) {
+    public User createUser(Authent registerRequest) {
         try (Connection connection = ConnectionUtil.createConnection()){
             // craft initial sql
             String sql = "INSERT INTO users (username, password) VALUES (?,?)";
@@ -76,7 +76,7 @@ public class UserDao {
 
     public static void main(String[] args) {
         UserDao dao = new UserDao();
-        UsernamePasswordAuthentication newCreds = new UsernamePasswordAuthentication();
+        Authent newCreds = new Authent();
         newCreds.setUsername("new user");
         newCreds.setPassword("new pass");
         User returnedUser = dao.createUser(newCreds);

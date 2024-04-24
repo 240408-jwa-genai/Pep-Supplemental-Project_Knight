@@ -54,7 +54,7 @@ public class MoonController {
 
 	public void deleteMoon(int currentUserId, int id) {
 		boolean deletedStatus = moonService.deleteMoonById(currentUserId, id);
-		System.out.println(currentUserId + ", " + id);
+		//System.out.println(currentUserId + ", " + id);
 		if(deletedStatus)
 		{
 			System.out.println("Deletion successful.");

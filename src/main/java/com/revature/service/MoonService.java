@@ -61,9 +61,9 @@ public class MoonService {
 
 	public boolean deleteMoonById(int currentUserId, int moonId) {
 		Moon foundMoon = dao.getMoonById(moonId);
-		System.out.println(currentUserId + ", " + moonId + ", " + dao.getPlanetOwnerId(foundMoon.getMyPlanetId()));
-		if(dao.getPlanetOwnerId(moonId) == currentUserId) {
-			System.out.println("Owner Authenticated.");
+		//System.out.println(currentUserId + ", " + moonId + ", " + dao.getPlanetOwnerId(foundMoon.getMyPlanetId()));
+		if(dao.getPlanetOwnerId(foundMoon.getMyPlanetId()) == currentUserId) {
+			//System.out.println("Owner Authenticated.");
 			return dao.deleteMoonById(moonId);
 		} else {
 			return false;
